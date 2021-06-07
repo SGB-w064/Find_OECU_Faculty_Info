@@ -3,7 +3,7 @@ import urllib
 import pprint
 from bs4 import BeautifulSoup as BS
 
-def main(teacher_name, find_info):
+def getInfo(teacher_name, find_info):
     url = "https://research.osakac.ac.jp/index.php?" + urllib.parse.quote(teacher_name)
     site = requests.get(url)
     data = BS(site.text, "html.parser")
@@ -19,7 +19,10 @@ def main(teacher_name, find_info):
     #pprint.pprint(select_data[0])
     return select_data[0]
 
-if __name__ == "__main__":
+def main():
     teacher_name = input("教員の名前をフルネームで入力: ")
     find_info = input("探したい情報を入力: ")
-    print(main(teacher_name, find_info))
+    print(getInfo(teacher_name, find_info))
+
+if __name__ == "__main__":
+    main()
